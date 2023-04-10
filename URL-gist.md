@@ -120,3 +120,40 @@ Examples of not Match:
     `.` is under 2 characters
     `.cheese` is over 6 characters
 `.G` doesn't work because G is not a lowercase character
+
+### Section 4
+
+`([\/\w \.-]*)*\/?$/`
+the catchgroup contains a bracket expression that contains:
+    the "/" special character
+    any word character (alpha-numeric and upper or lowercase)
+    the "." special character
+    the "-" special character
+after the brackter expression there is a "*" quantifier
+    this means that everything contained in the bracket expression can happen between 0-infinity times
+after the catchgroup there is a "*" quantifier
+    this means that the content produced within the catchgroup can happen between 0-infinity times
+folowing the quantifier there is a "/" special character follwed by a ? quantifier
+    this means that the "/" can occur zero or 1 time
+following the quantifier there is a $ anchor
+    this means that the string has ended
+
+Examples of Match:
+
+``
+`///frogkhlh//7484iuHJSLDKFRHLF////`
+
+`///frogkhlh//7484iuHJSLDKFRHLF////` works because the "/" special character is allowed
+    `frogkhlh` & `7484iuHJSLDKFRHLF` are both considered a word
+    the "*" quantifier means that you can have mutiple words and "/" special charcter 
+`` works because the "*" quantifier allows nothing as an option
+
+`///frogkhlh//7484iuHJSLDKFRHLF//@#$$$#//`
+    this doesn't work because the spcial characters "@", "#", and "$" are not listed in the available parameters
+
+
+### Author
+
+William Wood is a student attending the Fullstack Bootcamp at University of Minnesota.
+
+Github: https://github.com/woodwilliam
