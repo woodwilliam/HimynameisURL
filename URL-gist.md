@@ -62,3 +62,61 @@ Examples of not Match:
 `/s` would be needed for space to be an available parameter
 `g` & `egge` & `htytp:s//` dont work because they dont match the parameters that the catchgroupis looking for
 they are neither nothing nor are they "http://" nor are they "https://"
+
+### Section 2
+
+`([\da-z\.-]+)\.`
+    this catchgroup contains a bracket expression that contains:
+        -number value of 0-9,
+        -any lowercase charicter a-z, the special charicter "." and the special charicter "-"
+    this will happen at least one time
+
+Examples of Match:
+`h.y`
+`8`
+`g6`
+
+`h.y` works because the characters are lowercase and a-z, "." is an accepted special character
+`g6` works because it has a lowercase a-z chracter and a character with a number value of 0-9
+`8` works because it has a character with a number value of 0-9
+    and it allowed to be a single character becuse of the "+" quantifier
+
+Examples of not Match:
+``
+` `
+`Hg`
+`!!dgd`
+
+`` doesn't work because of the + quantifier
+` ` doesnt work because the character space (" ") is not one of the paramaters listed bracket expression
+`Hg` doesnt work because H is not a lowercase character
+`!!dgd` doesn't work because the "!" charicter is not one of the special characters listed in the bracket expression
+
+### Section 3
+
+`([a-z\.]{2,6})`
+the catchgroup contains a bracket expression that contains:
+    any lowercase sensitive charicter a-z
+    the special character "."
+the `{2,6}` quantifier gives character limit on the catchgroup with a min of 2 and a max of 6
+
+Examples of Match:
+`burp.`
+`.g`
+`cheese`
+
+`burp.` & `.g` work because they satisfies the character limit parameters
+    "burp" are all a-z characters and "." works because it was provided in the bracket expression
+    the same for "g" and "."
+
+Examples of not Match:
+``
+`.`
+`.cheese`
+`.G`
+
+`` doesn't work because there is not a quantifier indicating that nothing is an option
+`.` & `.cheese` dont work because they dont satisfy the character limit
+    `.` is under 2 characters
+    `.cheese` is over 6 characters
+`.G` doesn't work because G is not a lowercase character
